@@ -26,4 +26,12 @@ function createBoard(color, user) {
 createBoard('yellow', 'player');
 createBoard('pink', 'computer');
 
+class Ship {
+    constructor(name, length) {
+        this.name = name;
+        this.length = length;
+    }
+
+}
+
 flipButton.addEventListener('click', flip)
