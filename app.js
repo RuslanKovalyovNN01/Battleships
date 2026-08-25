@@ -52,13 +52,20 @@ function addShipPiece(ship) {
     let randomStartIndex = Math.floor(Math.random() * width * width);
     console.log(randomStartIndex)
     let shipsBlocks = []
+
+    let validStart = isHorizontal ? randomStartIndex <= width * width - ship.length ? randomStartIndex :
+        width * width  - ship.length : 
+        randomStartIndex <= width * width - width * ship.length ? randomStartIndex :
+        randomStartIndex - ship.length * width + width
+    
     for(let i = 0; i < ship.length; i++){
         if(isHorizontal) {
-            shipsBlocks.push(allBoardBlocks[Number(randomStartIndex) + i])
+            shipsBlocks.push(allBoardBlocks[Number(validStart) + i])
         } else {
-            shipsBlocks.push(allBoardBlocks[Number(randomStartIndex) + i * width])
+            shipsBlocks.push(allBoardBlocks[Number(validStart) + i * width])
         }
     }
+    
     shipsBlocks.forEach(shipBlock => {
         shipBlock.classList.add(ship.name)
         shipBlock.classList.add('taken')
